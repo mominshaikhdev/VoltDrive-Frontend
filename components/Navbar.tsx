@@ -68,21 +68,21 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-0.5 lg:space-x-1">
             {!user ? (
               loggedOutLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   className={({ isActive }) =>
-                    `flex items-center px-2.5 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                    `flex items-center px-1.5 md:px-2.5 xl:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
                       isActive
                         ? 'bg-gradient-to-r from-cyber-cyan/15 to-cyber-purple/15 border border-cyber-cyan/30 text-cyber-cyan'
                         : 'text-gray-400 hover:text-white border border-transparent'
                     }`
                   }
                 >
-                  <link.icon className="h-4 w-4 mr-2" />
+                  <link.icon className="h-3.5 w-3.5 md:h-4 w-4 mr-1 md:mr-2" />
                   {link.label}
                 </NavLink>
               ))
@@ -93,35 +93,35 @@ export default function Navbar() {
                     key={link.to}
                     to={link.to}
                     className={({ isActive }) =>
-                      `flex items-center px-2.5 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                      `flex items-center px-1.5 md:px-2.5 xl:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
                         isActive
                           ? 'bg-gradient-to-r from-cyber-cyan/15 to-cyber-purple/15 border border-cyber-cyan/30 text-cyber-cyan'
                           : 'text-gray-400 hover:text-white border border-transparent'
                       }`
                     }
                   >
-                    <link.icon className="h-4 w-4 mr-2" />
+                    <link.icon className="h-3.5 w-3.5 md:h-4 w-4 mr-1 md:mr-2" />
                     {link.label}
                   </NavLink>
                 ))}
                 
                 {/* User Profile / Dropdown Switcher */}
-                <div className="h-6 w-px bg-gray-800 mx-2" />
+                <div className="h-6 w-px bg-gray-800 mx-1 md:mx-2" />
                 <div className="relative">
                   <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center space-x-1.5 px-2 py-1 xl:px-3 xl:py-1.5 rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800/80 hover:border-gray-700 transition-all duration-300 cursor-pointer focus:outline-none"
+                    className="flex items-center space-x-1 md:space-x-1.5 px-1.5 py-1 md:px-2 md:py-1.5 xl:px-3 xl:py-1.5 rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800/80 hover:border-gray-700 transition-all duration-300 cursor-pointer focus:outline-none"
                   >
-                    <User className="h-4 w-4 text-cyber-purple" />
-                    <span className="text-sm font-medium text-gray-300">
+                    <User className="h-3.5 w-3.5 md:h-4 w-4 text-cyber-purple" />
+                    <span className="text-xs md:text-sm font-medium text-gray-300">
                       {user.name.split(' ')[0]}
                     </span>
                     {user.role === 'admin' ? (
                       <span title="Admin User">
-                        <Shield className="h-3.5 w-3.5 text-cyber-cyan ml-1" />
+                        <Shield className="h-3 w-3 md:h-3.5 w-3.5 text-cyber-cyan ml-0.5 md:ml-1" />
                       </span>
                     ) : (
-                      <span className="h-1.5 w-1.5 rounded-full bg-cyber-purple ml-1" />
+                      <span className="h-1 w-1 md:h-1.5 md:w-1.5 rounded-full bg-cyber-purple ml-0.5 md:ml-1" />
                     )}
                   </button>
 
@@ -201,7 +201,7 @@ export default function Navbar() {
           </div>
 
           {/* Hamburger Menu (Mobile) */}
-          <div className="flex lg:hidden">
+          <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-gray-400 hover:text-white focus:outline-none cursor-pointer"
@@ -214,7 +214,7 @@ export default function Navbar() {
 
       {/* Mobile Nav Links */}
       {isOpen && (
-        <div className="lg:hidden glass border-b border-gray-800/80 animate-fadeIn">
+        <div className="md:hidden glass border-b border-gray-800/80 animate-fadeIn">
           <div className="px-2 pt-2 pb-4 space-y-1">
             {!user ? (
               loggedOutLinks.map((link) => (
