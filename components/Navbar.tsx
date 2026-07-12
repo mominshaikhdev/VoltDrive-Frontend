@@ -58,7 +58,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-2 group flex-shrink-0">
             <div className="p-2 rounded-lg bg-gradient-to-br from-cyber-cyan to-cyber-purple shadow-lg shadow-cyber-cyan/20 group-hover:scale-105 transition-transform duration-300">
               <Zap className="h-5 w-5 text-white" />
             </div>
@@ -68,14 +68,14 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1">
             {!user ? (
               loggedOutLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   className={({ isActive }) =>
-                    `flex items-center px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                    `flex items-center px-2.5 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
                       isActive
                         ? 'bg-gradient-to-r from-cyber-cyan/15 to-cyber-purple/15 border border-cyber-cyan/30 text-cyber-cyan'
                         : 'text-gray-400 hover:text-white border border-transparent'
@@ -93,7 +93,7 @@ export default function Navbar() {
                     key={link.to}
                     to={link.to}
                     className={({ isActive }) =>
-                      `flex items-center px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                      `flex items-center px-2.5 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
                         isActive
                           ? 'bg-gradient-to-r from-cyber-cyan/15 to-cyber-purple/15 border border-cyber-cyan/30 text-cyber-cyan'
                           : 'text-gray-400 hover:text-white border border-transparent'
@@ -110,7 +110,7 @@ export default function Navbar() {
                 <div className="relative">
                   <button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800/80 hover:border-gray-700 transition-all duration-300 cursor-pointer focus:outline-none"
+                    className="flex items-center space-x-1.5 px-2 py-1 xl:px-3 xl:py-1.5 rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800/80 hover:border-gray-700 transition-all duration-300 cursor-pointer focus:outline-none"
                   >
                     <User className="h-4 w-4 text-cyber-purple" />
                     <span className="text-sm font-medium text-gray-300">
@@ -201,7 +201,7 @@ export default function Navbar() {
           </div>
 
           {/* Hamburger Menu (Mobile) */}
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-gray-400 hover:text-white focus:outline-none cursor-pointer"
@@ -214,7 +214,7 @@ export default function Navbar() {
 
       {/* Mobile Nav Links */}
       {isOpen && (
-        <div className="md:hidden glass border-b border-gray-800/80 animate-fadeIn">
+        <div className="lg:hidden glass border-b border-gray-800/80 animate-fadeIn">
           <div className="px-2 pt-2 pb-4 space-y-1">
             {!user ? (
               loggedOutLinks.map((link) => (
