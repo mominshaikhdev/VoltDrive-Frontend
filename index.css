@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-cyber-bg: var(--cyber-bg);
+  --color-cyber-card: var(--cyber-card);
+  --color-cyber-cyan: #06b6d4;
+  --color-cyber-purple: #8b5cf6;
+  --color-cyber-pink: #ec4899;
+  --color-cyber-text: var(--cyber-text);
+  --color-cyber-muted: var(--cyber-muted);
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(6, 182, 212, 0.2); }
+  100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.6); }
+}
+
+@layer base {
+  :root {
+    /* System aware theme - defaults to Light theme colors */
+    --cyber-bg: #f8fafc;
+    --cyber-card: #ffffff;
+    --cyber-card-rgb: 255, 255, 255;
+    --cyber-border-rgb: 15, 23, 42;
+    --cyber-text: #0f172a;
+    --cyber-muted: #64748b;
+
+    /* Inverted gray scale for light theme */
+    --color-gray-50: #0f172a;
+    --color-gray-100: #1e293b;
+    --color-gray-200: #334155;
+    --color-gray-300: #475569;
+    --color-gray-400: #64748b;
+    --color-gray-500: #94a3b8;
+    --color-gray-600: #cbd5e1;
+    --color-gray-700: #e2e8f0;
+    --color-gray-800: #f1f5f9;
+    --color-gray-900: #f8fafc;
+    --color-gray-950: #ffffff;
+  }
+
+  /* When system prefers dark scheme, use dark theme colors */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --cyber-bg: #070a13;
+      --cyber-card: #0f1424;
+      --cyber-card-rgb: 15, 20, 36;
+      --cyber-border-rgb: 255, 255, 255;
+      --cyber-text: #f3f4f6;
+      --cyber-muted: #9ca3af;
+
+      /* Standard gray scale for dark theme */
+      --color-gray-50: #f9fafb;
+      --color-gray-100: #f3f4f6;
+      --color-gray-200: #e5e7eb;
+      --color-gray-300: #d1d5db;
+      --color-gray-400: #9ca3af;
+      --color-gray-500: #6b7280;
+      --color-gray-600: #4b5563;
+      --color-gray-700: #374151;
+      --color-gray-800: #1f2937;
+      --color-gray-900: #111827;
+      --color-gray-950: #030712;
+    }
+  }
+
+  body {
+    @apply bg-cyber-bg text-cyber-text font-sans antialiased overflow-x-hidden;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.05) 0px, transparent 50%);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--cyber-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(6, 182, 212, 0.5);
+  }
+
+  /* Automatically map text-white headings/paragraphs to cyber-text when in light mode */
+  h1, h2, h3, h4, h5, h6,
+  p.text-white,
+  span.text-white:not([class*="from-"]):not([class*="to-"]):not([class*="bg-"]):not(.btn-primary *):not(.btn-secondary *),
+  div.text-white:not([class*="bg-"]),
+  td.text-white,
+  li.text-white {
+    color: var(--cyber-text) !important;
+  }
+
+  /* Make sure inputs adapt */
+  input, select, textarea {
+    color: var(--cyber-text) !important;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(var(--cyber-card-rgb), 0.60);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--cyber-border-rgb), 0.08);
+  }
+  
+  .glass-card {
+    background: rgba(var(--cyber-card-rgb), 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(var(--cyber-border-rgb), 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(var(--cyber-card-rgb), 0.65);
+    border-color: rgba(6, 182, 212, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.2);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink;
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden h-11 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-cyber-cyan to-cyber-purple hover:opacity-90 transition-all duration-300 shadow-lg shadow-cyber-cyan/10 hover:shadow-cyber-cyan/20 active:scale-95 cursor-pointer flex items-center justify-center;
+  }
+
+  .btn-secondary {
+    @apply h-11 px-6 rounded-xl font-semibold border border-gray-700 bg-gray-900/50 hover:bg-gray-800 text-gray-200 transition-all duration-300 active:scale-95 cursor-pointer flex items-center justify-center;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-gray-950/60 border border-gray-800 text-cyber-text placeholder-gray-500 focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan/25 transition-all duration-300;
+  }
+}
+
+/* Custom styles for animations & effects */
+.radial-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 100%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hide standard arrows on number inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
